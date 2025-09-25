@@ -13,7 +13,7 @@ const app = express();
 
 // Allowed origins (local + deployed frontend)
 const allowedOrigins = [
-  "https://intaskb.onrender.com"
+  "teal-malasada-89341b.netlify.app"
 ];
 
 app.use(cors({
