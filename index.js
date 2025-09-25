@@ -13,7 +13,6 @@ const app = express();
 
 // Allowed origins (local + deployed frontend)
 const allowedOrigins = [
-  "http://localhost:5173",
   "https://intaskb.onrender.com"
 ];
 
