@@ -13,15 +13,18 @@ const app = express();
 
 // Allowed origins (local + deployed frontend)
 const allowedOrigins = [
-  "teal-malasada-89341b.netlify.app"
+  "http://localhost:5173",
+  "https://teal-malasada-89341b.netlify.app"
 ];
 
+// CORS middleware
 app.use(cors({
   origin: function(origin, callback) {
-
+    // allow requests with no origin (like Postman, Render internal requests)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log("Blocked by CORS:", origin); // debug blocked origins
       callback(new Error("Not allowed by CORS"));
     }
   },
@@ -31,11 +34,11 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-
+// Routes
 app.use("/User", User);
 app.use("/task", Task);
 
-
+// Start server
 const start = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
